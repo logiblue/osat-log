@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
@@ -12,7 +11,6 @@ const BlogIndex = ({ data, location }) => {
   if (posts.length === 0) {
     return (
       <Layout location={location} title={siteTitle}>
-        <Bio />
         <p>
           No blog posts found. Add markdown posts to "content/blog" (or the
           directory you specified for the "gatsby-source-filesystem" plugin in
@@ -22,53 +20,63 @@ const BlogIndex = ({ data, location }) => {
     )
   }
 
+  const handleHover = (event) => {
+    const hoveredElement = event.target;
+    const liElements = document.querySelectorAll('li');
+
+    liElements.forEach((li) => {
+      if (li !== hoveredElement) {
+        li.classList.add('fade-link');
+      }
+    });
+  };
+
+  const handleLeave = () => {
+    const liElements = document.querySelectorAll('li');
+    liElements.forEach((li) => {
+      li.classList.remove('fade-link');
+    });
+  };
+
   return (
     <Layout location={location} title={siteTitle}>
-      <Bio />
-      <ol style={{ listStyle: `none` }}>
+      <Seo title="All posts" />
+      <ul className="post-list" style={{ listStyle: `none` }}>
         {posts.map(post => {
           const title = post.frontmatter.title || post.fields.slug
 
           return (
-            <li key={post.fields.slug}>
-              <article
+            <li
+              key={post.fields.slug}
+              className="post-single"
+              onMouseEnter={handleHover}
+              onMouseLeave={handleLeave}
+            >
+              <div
                 className="post-list-item"
                 itemScope
                 itemType="http://schema.org/Article"
               >
-                <header>
-                  <h2>
-                    <Link to={post.fields.slug} itemProp="url">
-                      <span itemProp="headline">{title}</span>
-                    </Link>
-                  </h2>
-                  <small>{post.frontmatter.date}</small>
-                </header>
-                <section>
-                  <p
-                    dangerouslySetInnerHTML={{
-                      __html: post.frontmatter.description || post.excerpt,
-                    }}
-                    itemProp="description"
-                  />
-                </section>
-              </article>
+                <h2>
+                  <Link
+                    className="post-single-link"
+                    to={post.fields.slug}
+                    itemProp="url"
+                  >
+                    <span itemProp="headline">{title}</span>
+                  </Link>
+                </h2>
+                <small>{post.frontmatter.date}</small>
+              </div>
             </li>
           )
         })}
-      </ol>
+      </ul>
     </Layout>
   )
 }
 
 export default BlogIndex
-
-/**
- * Head export to define metadata for the page
- *
- * See: https://www.gatsbyjs.com/docs/reference/built-in-components/gatsby-head/
- */
-export const Head = () => <Seo title="All posts" />
 
 export const pageQuery = graphql`
   {
@@ -77,7 +85,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { frontmatter: { date: DESC } }) {
+    allMarkdownRemark(sort: { fields: frontmatter___date, order: DESC }) {
       nodes {
         excerpt
         fields {
