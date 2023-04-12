@@ -19,7 +19,7 @@ const NotFoundPage = ({ data, location }) => {
         <motion.div
             className="box a"
             initial={{ opacity: 0,  }}
-            animate={{ opacity: 1  , duration:0.3}}
+            animate={{ opacity: 1  , duration:0.6}}
             transition={{  
             ease: "linear",
             duration: 0.3,
@@ -31,23 +31,23 @@ const NotFoundPage = ({ data, location }) => {
         >
                      <motion.h1 
                       initial={{ opacity: 0,  }}
-                      animate={{ opacity: 1  , duration:1}}
+                      animate={{ opacity: 1  , duration:0.5}}
                       transition={{  
                       ease: "linear",
-                      duration: 0.7,
-                      delay:1
+                      duration: 0.3,
+                      delay:0.4
                        }}
                    >Senior UI Designer with a passion for designing digital tools that empower people.</motion.h1>
 
     </motion.div>
             
             <motion.div className="box b"
-             initial={{ opacity: 0,  }}
+             initial={{ opacity: 0 }}
              animate={{ opacity: 1  , duration:0.3}}
              transition={{  
              ease: "linear",
              duration: 0.4,
-             delay:0.6
+             delay:0.3
               }}>
                 <h2>Latest Notes</h2>
                 <ul>
@@ -56,7 +56,14 @@ const NotFoundPage = ({ data, location }) => {
                     </li>
                 </ul>
             </motion.div>
-            <motion.div className="box c">C</motion.div>
+            <motion.div  initial={{ opacity: 0,  }}
+                      animate={{ opacity: 1  , duration:0.6}}
+                      transition={{  
+                      ease: "linear",
+                      duration: 0.3,
+                      delay:0.5
+                       }}
+                       className="box c">C</motion.div>
             <motion.div className="box d">D</motion.div>
         </div>
         </div>
