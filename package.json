@@ -12,6 +12,7 @@
     "@fontsource/montserrat": "^4.5.14",
     "@popperjs/core": "^2.6.0",
     "bootstrap": "^5.0.0-beta1",
+    "framer-motion": "^10.11.6",
     "gatsby": "^5.7.0",
     "gatsby-plugin-feed": "^5.7.0",
     "gatsby-plugin-image": "^3.7.0",

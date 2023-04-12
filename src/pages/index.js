@@ -46,29 +46,33 @@ const BlogIndex = ({ data, location }) => {
           const title = post.frontmatter.title || post.fields.slug
 
           return (
+          
             <li
               key={post.fields.slug}
               className="post-single"
               onMouseEnter={handleHover}
               onMouseLeave={handleLeave}
             >
+                <Link
+                  className="post-single-link"
+                  to={post.fields.slug}
+                  itemProp="url"
+                >
               <div
                 className="post-list-item"
                 itemScope
                 itemType="http://schema.org/Article"
               >
                 <h2>
-                  <Link
-                    className="post-single-link"
-                    to={post.fields.slug}
-                    itemProp="url"
-                  >
+                  
                     <span itemProp="headline">{title}</span>
-                  </Link>
+                  
                 </h2>
                 <small>{post.frontmatter.date}</small>
               </div>
+              </Link>
             </li>
+            
           )
         })}
       </ul>
