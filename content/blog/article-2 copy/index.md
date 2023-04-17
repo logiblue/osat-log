@@ -1,6 +1,6 @@
 ---
-title: Creating a component system with vanilla JS and Tailwind JS
-date: "2020-05-01T22:12:03.284Z"
+title: My journey on the first startup
+date: "2021-05-01T22:12:03.284Z"
 description: "Hello World"
 ---
 
