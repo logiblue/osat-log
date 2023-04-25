@@ -64,15 +64,12 @@ const BlogIndex = ({ data, location }) => {
                 itemType="http://schema.org/Article"
               >
                 <h2>
-                  
-                    <span itemProp="headline">{title}</span>
-                  
+                    {title}                  
                 </h2>
-                <small>{post.frontmatter.date}</small>
+                <small className="post-list-item-date">{post.frontmatter.date}</small>
               </div>
               </Link>
             </li>
-            
           )
         })}
       </ul>

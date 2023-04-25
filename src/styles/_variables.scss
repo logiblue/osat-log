@@ -1,0 +1,19 @@
+
+
+html {
+	font-size: 62,5%; 
+}
+
+$font-1:'Questrial', sans-serif;
+$font-2: 'Roboto', sans-serif;
+
+
+h1,h2,h3,h4,h5,h6{
+    font-family: $font-1;
+}
+
+
+$heading-1:clamp(2.25rem, 2vw + 1rem, 3.188rem);
+
+
+

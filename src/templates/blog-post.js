@@ -19,13 +19,16 @@ const BlogPostTemplate = ({
         itemType="http://schema.org/Article"
       >
         <header>
-          <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <h1 className="article-body-title" itemProp="headline">{post.frontmatter.title}</h1>
+          <date>{post.frontmatter.date}</date>
         </header>
-        <section
+        <section className="article-container">
+        <div className="article-body"
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
-        />
+        ></div>
+        <div className="article-sidebar"></div>
+        </section>
         <hr />
         <footer>
           <Bio />
