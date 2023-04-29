@@ -93,13 +93,18 @@ body{
 
 
 
-
-
+.table-of-contents{
+    position: fixed;
+}
+.table-of-contents .active{
+    color: red !important;
+}
 
 // BLOG SINGLE POST
 
 .article-container{
     padding:0 20px;
+    display: flex;
 }
 
 article header {

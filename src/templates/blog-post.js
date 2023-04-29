@@ -9,7 +9,52 @@ const BlogPostTemplate = ({
   data: { previous, next, site, markdownRemark: post },
   location,
 }) => {
+  function highlightActiveTOCItem() {
+    const headings = document.querySelectorAll('h1, h2, h3, h4, h5, h6');
+    const tocItems = document.querySelectorAll('.table-of-contents a');
+  
+    window.addEventListener('scroll', () => {
+      const scrollPosition = window.scrollY;
+  
+      // Find the current heading in view
+      let currentHeading = null;
+      for (let i = headings.length - 1; i >= 0; i--) {
+        const heading = headings[i];
+        const rect = heading.getBoundingClientRect();
+  
+        if (rect.top <= 0) {
+          currentHeading = heading;
+          break;
+        }
+      }
+  
+      // Find the corresponding table of contents item and highlight it
+      if (currentHeading) {
+        const currentTocItem = Array.from(tocItems).find((tocItem) =>
+          tocItem.href.endsWith(`#${currentHeading.id}`)
+        );
+  
+        if (currentTocItem) {
+          tocItems.forEach((tocItem) => {
+            tocItem.classList.toggle('active', tocItem === currentTocItem);
+          });
+        }
+      }
+    });
+  }
+  
+  
   const siteTitle = site.siteMetadata?.title || `Title`
+
+  React.useEffect(() => {
+    highlightActiveTOCItem();
+
+    const tableOfContents = document.querySelector(".table-of-contents")
+    const sidebar = document.querySelector(".article-sidebar")
+    if (tableOfContents && sidebar) {
+      sidebar.appendChild(tableOfContents)
+    }
+  }, [])
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -27,7 +72,9 @@ const BlogPostTemplate = ({
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
         ></div>
-        <div className="article-sidebar"></div>
+        <div className="article-sidebar">
+          
+        </div>
         </section>
         <hr />
         <footer>
@@ -71,6 +118,7 @@ export const Head = ({ data: { markdownRemark: post } }) => {
       description={post.frontmatter.description || post.excerpt}
     />
   )
+  
 }
 
 export default BlogPostTemplate

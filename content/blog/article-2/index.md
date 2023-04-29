@@ -1,8 +1,11 @@
 ---
-title: My journey on the first startup
-date: "2021-05-01T22:12:03.284Z"
+title: TOCCC - My journey on the first startup
+date: "2023-05-01T22:12:03.284Z"
 description: "Hello World"
 ---
+```toc
+# This code block gets replaced with the TOC
+```
 
 This is my first post on my new fake blog! How exciting!
 
