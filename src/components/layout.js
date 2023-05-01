@@ -11,6 +11,19 @@ const Layout = ({ location, title, children }) => {
     header = (
       
       <div className="main-heading">
+           <Link to="https://github.com/logiblue" className="single-social-link"> 
+                    <StaticImage
+                    className="social-icon"
+                    formats={["auto", "webp", "avif", "svg"]}
+                    src="../images/github-mark-white.svg"
+                    width={25}
+                    height={25}
+                    quality={95}
+                    objectFit="contain"
+                    alt="Profile picture"
+                  />
+                </Link>
+                
           <Link to="/" className="main-heading-eff">Konstantinos Karanikolas</Link>
           {/* <p className="main-heading-text">I’m a web developer who loves crafting things on the web and sharing workbench knowledge. </p> */}
           <p className="main-heading-social">
